@@ -11,12 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-a{
-  color: yellow;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-#root{
-    /* background-image: linear-gradient(black, #06006a); */
-}
