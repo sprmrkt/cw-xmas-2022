@@ -9,7 +9,7 @@ const Holder = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: #FE754A;
+  background-color: #f15e2f;
 
   p {
     text-transform: uppercase;
@@ -18,6 +18,7 @@ const Holder = styled.div`
     line-height: 1.1;
     width: 140px;
   }
+
   a {
     color: inherit;
   }

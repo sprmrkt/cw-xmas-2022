@@ -43,6 +43,10 @@ function Clump({mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props})
     geometry={props.geometry}
     material={props.material}
     material-map={textures[props.texture]}
+    onClick={(e) => {
+      e.object.visible = false
+      console.log(e, 'clicked')
+    }}
   />
 }
 

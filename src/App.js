@@ -6,28 +6,14 @@ import Clump from "./Components/Clump";
 import CanvasHolder from "./Components/CanvasHolder";
 import Html from "./Components/Html";
 import * as THREE from "three";
+import ControlBall from "./Components/ControlBall";
+import {useRef} from "react";
+import BallSet from "./Components/BallSet";
 
 const sphereGeometry = new THREE.SphereGeometry(1, 32, 32)
-const redMaterial = new THREE.MeshStandardMaterial({
-  color: "red",
-  roughness: 0,
-  envMapIntensity: 0.2,
-  // emissive: "#370037"
-})
-const greenMaterial = new THREE.MeshStandardMaterial({
-  color: "green",
-  roughness: 0,
-  envMapIntensity: 0.2,
-  // emissive: "#370037"
-})
-const yellowMaterial = new THREE.MeshStandardMaterial({
-  color: "white",
-  roughness: 0,
-  envMapIntensity: 0.2,
-  // emissive: "#370037"
-})
 
 function App() {
+  const controlRef = useRef(null)
   return (
     <CanvasHolder>
       <Html />
@@ -37,10 +23,14 @@ function App() {
                    shadow-mapSize={[512, 512]} />
         <directionalLight intensity={1} position={[-10, -10, -10]} color="white" />
         <Physics gravity={[0, 2, 0]} iterations={10}>
-          <Pointer />
-          <Clump geometry={sphereGeometry} material={redMaterial} count={15} texture={0}/>
-          <Clump geometry={sphereGeometry} material={greenMaterial} count={15} texture={1}/>
-          <Clump geometry={sphereGeometry} material={yellowMaterial} count={15} texture={2}/>
+          <ControlBall ref={controlRef}/>
+          <BallSet controlRef={controlRef} geometry={sphereGeometry} material={0} count={13} restLength={4} stiffness={20}/>
+          <BallSet controlRef={controlRef} geometry={sphereGeometry} material={1} count={13} restLength={4} stiffness={50}/>
+          <BallSet controlRef={controlRef} geometry={sphereGeometry} material={2} count={13} restLength={4} stiffness={100}/>
+          {/*<Pointer />*/}
+          {/*<Clump geometry={sphereGeometry} material={redMaterial} count={15} texture={0}/>*/}
+          {/*<Clump geometry={sphereGeometry} material={greenMaterial} count={15} texture={1}/>*/}
+          {/*<Clump geometry={sphereGeometry} material={yellowMaterial} count={15} texture={2}/>*/}
         </Physics>
         <Environment preset={'warehouse'} />
       </Canvas>
