@@ -1,20 +1,26 @@
 import React from 'react';
-// import {useTexture} from "@react-three/drei";
+import {useTexture} from "@react-three/drei";
 import {useSphere} from "@react-three/cannon";
 import {useFrame} from "@react-three/fiber";
 import * as THREE from "three"
 
 const rfs = THREE.MathUtils.randFloatSpread
-const sphereGeometry = new THREE.SphereGeometry(1, 32, 32)
-const baubleMaterial = new THREE.MeshStandardMaterial({
-  color: "red",
-  roughness: 0,
-  envMapIntensity: 0.2,
-  emissive: "#370037"
-})
+// const sphereGeometry = new THREE.SphereGeometry(1, 32, 32)
+// const baubleMaterial = new THREE.MeshStandardMaterial({
+//   color: "red",
+//   roughness: 0,
+//   envMapIntensity: 0.2,
+//   emissive: "#370037"
+// })
 
 function Clump({mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props}) {
-  // const texture = useTexture("/cross.jpg")
+
+  const textures = [
+    useTexture("/owl-texture.jpg"),
+    useTexture("/supermarket-texture.jpg"),
+    useTexture("/2022-texture.jpg")
+  ]
+
   const [ref, api] = useSphere(() => ({
     args: [1],
     mass: 1,
@@ -23,7 +29,7 @@ function Clump({mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props})
     position: [rfs(20), rfs(20), rfs(20)]
   }))
   useFrame((state) => {
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < props.count; i++) {
       // Get current whereabouts of the instanced sphere
       ref.current.getMatrixAt(i, mat)
       // Normalize the position and multiply by a negative force.
@@ -33,10 +39,10 @@ function Clump({mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props})
   })
   return <instancedMesh
     ref={ref} castShadow receiveShadow
-    args={[null, null, 40]}
-    geometry={sphereGeometry}
-    material={baubleMaterial}
-    // material-map={texture}
+    args={[null, null, props.count]}
+    geometry={props.geometry}
+    material={props.material}
+    material-map={textures[props.texture]}
   />
 }
 
