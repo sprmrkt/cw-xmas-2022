@@ -4,11 +4,13 @@ import {Environment, Sky} from "@react-three/drei";
 import Pointer from "./Components/Pointer";
 import Clump from "./Components/Clump";
 import CanvasHolder from "./Components/CanvasHolder";
+import Html from "./Components/Html";
 
 
 function App() {
   return (
     <CanvasHolder>
+      <Html/>
       <Canvas shadows dpr={[1, 2]} camera={{position: [0, 0, 20], fov: 35, near: 1, far: 40}}>
         <ambientLight intensity={0.25} />
         <spotLight intensity={1} angle={0.2} penumbra={1} position={[30, 30, 30]} castShadow
@@ -19,7 +21,7 @@ function App() {
           <Clump />
         </Physics>
         <Environment preset={'warehouse'} />
-        <Sky />
+        {/*<Sky />*/}
       </Canvas>
     </CanvasHolder>
   );

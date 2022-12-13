@@ -1,5 +1,5 @@
 import React from 'react';
-import {useTexture} from "@react-three/drei";
+// import {useTexture} from "@react-three/drei";
 import {useSphere} from "@react-three/cannon";
 import {useFrame} from "@react-three/fiber";
 import * as THREE from "three"
