@@ -8,7 +8,7 @@ const ControlBall = forwardRef((props, fwdRef) => {
     position.set((mouse.x * viewport.width) / 2, (mouse.y * viewport.height) / 2, 0),
   )
   return (
-    <mesh ref={ref} material={props.material} visible={false}>
+    <mesh ref={ref} visible={false}>
       <sphereBufferGeometry args={[1, 12, 12]} />
     </mesh>
   )

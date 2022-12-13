@@ -1,5 +1,5 @@
 import React from 'react';
-import {useBox, useSphere, useSpring} from "@react-three/cannon";
+import { useSphere, useSpring} from "@react-three/cannon";
 import {Instance, useTexture} from "@react-three/drei";
 import * as THREE from "three";
 

@@ -1,25 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Instances, useTexture} from "@react-three/drei";
 import Ball from "./Ball";
 import * as THREE from "three";
-
-const materials = [
-  new THREE.MeshStandardMaterial({
-    color: "red",
-    roughness: 0,
-    envMapIntensity: 0.2,
-  }),
-  new THREE.MeshStandardMaterial({
-    color: "green",
-    roughness: 0,
-    envMapIntensity: 0.2,
-  }),
-  new THREE.MeshStandardMaterial({
-    color: "white",
-    roughness: 0,
-    envMapIntensity: 0.2,
-  })
-]
 
 const BallSet = (props) => {
   const materials = [
