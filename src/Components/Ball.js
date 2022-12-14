@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {Instance} from "@react-three/drei";
 import {useSphere} from "@react-three/cannon";
 import * as THREE from "three";
@@ -6,6 +6,17 @@ import {useFrame} from "@react-three/fiber";
 
 const rfs = THREE.MathUtils.randFloatSpread
 function Ball({vec = new THREE.Vector3()}) {
+  // const sound = useMemo(() => new Audio('/bell.m4a'), [])
+  //
+  // const playAudio = (collision) => {
+  //   // console.log(collision.contact.impactVelocity)
+  //   if (collision.contact.impactVelocity > 3) {
+  //     if(!sound.isPlaying){
+  //       sound.currentTime = 0
+  //       sound.play((sound.volume = 0.2))
+  //     }
+  //   }
+  // }
 
   const [ref, api] = useSphere(() => ({
     args: [1],
