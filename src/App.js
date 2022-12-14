@@ -13,20 +13,12 @@ const redMaterial = new THREE.MeshStandardMaterial({
   color: red,
   roughness: 0,
   envMapIntensity: 0.2,
-  // emissive: "#370037"
 })
 const greenMaterial = new THREE.MeshStandardMaterial({
   color: "white",
   roughness: 0,
   envMapIntensity: 0.2,
-  // emissive: "#370037"
 })
-// const yellowMaterial = new THREE.MeshStandardMaterial({
-//   color: "white",
-//   roughness: 0,
-//   envMapIntensity: 0.2,
-//   // emissive: "#370037"
-// })
 
 function App() {
   return (

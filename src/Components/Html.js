@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import {ReactComponent as CwLogo} from '../assets/cw-logo.svg'
 import {ReactComponent as SupermarketLogo} from '../assets/supermarket-logo.svg'
+import useDeviceOrientation from "../hooks/useDeviceOrientation";
 
 const Holder = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 0;
-  right: 0;
-  background: linear-gradient(62deg, #D9D9D9 6.44%, rgba(217, 217, 217, 0) 138.15%);
+  width: 100%;
+  height: 100vh;
 
   p {
     text-transform: uppercase;

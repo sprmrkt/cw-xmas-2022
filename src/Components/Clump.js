@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {useTexture} from "@react-three/drei";
 import {useSphere} from "@react-three/cannon";
 import {useFrame} from "@react-three/fiber";
@@ -14,20 +14,30 @@ const rfs = THREE.MathUtils.randFloatSpread
 // })
 
 function Clump({mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props}) {
-
+  // const sound = useMemo(() => new Audio('/hit.mp3'), [])
   const textures = [
     useTexture("/owl-texture.jpg"),
     useTexture("/supermarket-texture.jpg"),
     useTexture("/2022-texture.jpg")
   ]
 
+  // const playAudio = (collision) => {
+  //   // console.log(collision.contact.impactVelocity)
+  //   if (collision.contact.impactVelocity > 0.5) {
+  //     sound.currentTime = 0
+  //     sound.play((sound.volume = 0.2))
+  //   }
+  // }
+
   const [ref, api] = useSphere(() => ({
     args: [1],
     mass: 1,
     angularDamping: 0.1,
     linearDamping: 0.65,
-    position: [rfs(20), rfs(20), rfs(20)]
+    position: [rfs(20), rfs(20), rfs(20)],
+    // onCollide: playAudio
   }))
+
   useFrame((state) => {
     for (let i = 0; i < props.count; i++) {
       // Get current whereabouts of the instanced sphere
@@ -37,6 +47,7 @@ function Clump({mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props})
       api.at(i).applyForce(vec.setFromMatrixPosition(mat).normalize().multiplyScalar(-50).toArray(), [0, 0, 0])
     }
   })
+
   return <instancedMesh
     ref={ref} castShadow receiveShadow
     args={[null, null, props.count]}
