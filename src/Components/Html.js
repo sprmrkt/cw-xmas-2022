@@ -37,12 +37,11 @@ const Logos = styled.div`
   top: 20px;
   right: 20px;
   display: flex;
-  z-index: 100;
   a {
     display: block;
-    padding: 10px;
+    padding: 7px;
     svg {
-      height: 60px;
+      height: 50px;
       width: auto;
       path {
         fill: #000;

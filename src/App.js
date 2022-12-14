@@ -18,7 +18,7 @@ function App() {
         <spotLight intensity={1} angle={0.2} penumbra={1} position={[30, 30, 30]} castShadow
                    shadow-mapSize={[512, 512]} />
         <directionalLight intensity={1} position={[-10, -10, -10]} color="white" />
-        <Physics gravity={[0, 10, 0]} iterations={10}>
+        <Physics gravity={[0, 2, 0]} iterations={10}>
           <Pointer />
           <Clump geometry={sphereGeometry} material={0} count={30} />
           <Clump geometry={sphereGeometry} material={1} count={30} />
