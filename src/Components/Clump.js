@@ -1,24 +1,32 @@
 import React, {useMemo} from 'react';
-import {useTexture} from "@react-three/drei";
+import {Instances, useTexture} from "@react-three/drei";
 import {useSphere} from "@react-three/cannon";
 import {useFrame} from "@react-three/fiber";
 import * as THREE from "three"
+import Ball from "./Ball";
 
-const rfs = THREE.MathUtils.randFloatSpread
-// const sphereGeometry = new THREE.SphereGeometry(1, 32, 32)
-// const baubleMaterial = new THREE.MeshStandardMaterial({
-//   color: "red",
-//   roughness: 0,
-//   envMapIntensity: 0.2,
-//   emissive: "#370037"
-// })
+// const rfs = THREE.MathUtils.randFloatSpread
+const red = new THREE.Color( 0xFF4E36 ).convertSRGBToLinear();
 
-function Clump({mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props}) {
+function Clump(props) {
   // const sound = useMemo(() => new Audio('/hit.mp3'), [])
-  const textures = [
-    useTexture("/owl-texture.jpg"),
-    useTexture("/supermarket-texture.jpg"),
-    useTexture("/2022-texture.jpg")
+  // const textures = [
+  //   useTexture("/owl-texture.jpg"),
+  //   useTexture("/supermarket-texture.jpg")
+  // ]
+  const materials = [
+    new THREE.MeshStandardMaterial({
+      color: red,
+      roughness: 0,
+      envMapIntensity: 0.2,
+      map: useTexture("/owl-texture.jpg")
+    }),
+    new THREE.MeshStandardMaterial({
+      color: "white",
+      roughness: 0,
+      envMapIntensity: 0.2,
+      map: useTexture("/supermarket-texture.jpg")
+    })
   ]
 
   // const playAudio = (collision) => {
@@ -29,32 +37,26 @@ function Clump({mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props})
   //   }
   // }
 
-  const [ref, api] = useSphere(() => ({
-    args: [1],
-    mass: 1,
-    angularDamping: 0.1,
-    linearDamping: 0.65,
-    position: [rfs(20), rfs(20), rfs(20)],
-    // onCollide: playAudio
-  }))
+  // const [ref, api] = useSphere(() => ({
+  //   args: [1],
+  //   mass: 1,
+  //   angularDamping: 0.1,
+  //   linearDamping: 0.65,
+  //   position: [rfs(20), rfs(20), rfs(20)],
+  //   // onCollide: playAudio
+  // }))
 
-  useFrame((state) => {
-    for (let i = 0; i < props.count; i++) {
-      // Get current whereabouts of the instanced sphere
-      ref.current.getMatrixAt(i, mat)
-      // Normalize the position and multiply by a negative force.
-      // This is enough to drive it towards the center-point.
-      api.at(i).applyForce(vec.setFromMatrixPosition(mat).normalize().multiplyScalar(-50).toArray(), [0, 0, 0])
-    }
-  })
+  const balls = [];
+  for (let i = 0; i < props.count; i++) {
+    balls.push(<Ball key={i} />);
+  }
 
-  return <instancedMesh
-    ref={ref} castShadow receiveShadow
-    args={[null, null, props.count]}
+  return <Instances
+    count={props.count}
     geometry={props.geometry}
-    material={props.material}
-    material-map={textures[props.texture]}
-  />
+    material={materials[props.material]}>
+    {balls}
+  </Instances>
 }
 
 export default Clump;
