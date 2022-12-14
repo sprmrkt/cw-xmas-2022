@@ -9,14 +9,14 @@ const Holder = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: #FE754A;
+  background: linear-gradient(62deg, #D9D9D9 6.44%, rgba(217, 217, 217, 0) 138.15%);
 
   p {
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 800;
     font-size: 20px;
     line-height: 1.1;
-    width: 140px;
+    font-family: 'Karla', sans-serif;
   }
   a {
     color: inherit;
@@ -37,11 +37,12 @@ const Logos = styled.div`
   top: 20px;
   right: 20px;
   display: flex;
+  z-index: 100;
   a {
     display: block;
     padding: 10px;
     svg {
-      height: 40px;
+      height: 60px;
       width: auto;
       path {
         fill: #000;
@@ -56,8 +57,8 @@ const Logos = styled.div`
 function Html() {
   return (
     <Holder>
-      <Text top left>2022 STIRRED UP A LOT OF IDEAS, NEW DIRECTIONS AND UNEXPECTED CONNECTIONS</Text>
-      <Text bottom left>FROM EVERYONE AT CW, THANK YOU FOR BEING THERE WITH US. WE LOOK FORWARD TO SHAKING THINGS UP IN 2023.</Text>
+      <Text top left>2022 STIRRED <br/>UP A LOT OF <br/>IDEAS, NEW <br/>DIRECTIONS AND <br/>UNEXPECTED <br/>CONNECTIONS</Text>
+      <Text bottom left>FROM EVERYONE AT <br/>CW & Supermarket, <br/>THANK YOU FOR <br/>BEING THERE <br/>WITH US. WE <br/>LOOK FORWARD <br/>TO SHAKING <br/>THINGS UP IN 2023.</Text>
       <Logos>
         <a href="https://craigwalker.com.au" target="_blank" rel="noopener noreferrer">
           <CwLogo />

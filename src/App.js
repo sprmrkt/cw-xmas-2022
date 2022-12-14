@@ -8,24 +8,25 @@ import Html from "./Components/Html";
 import * as THREE from "three";
 
 const sphereGeometry = new THREE.SphereGeometry(1, 32, 32)
+const red = new THREE.Color( 0xFF4E36 ).convertSRGBToLinear();
 const redMaterial = new THREE.MeshStandardMaterial({
-  color: "red",
+  color: red,
   roughness: 0,
   envMapIntensity: 0.2,
   // emissive: "#370037"
 })
 const greenMaterial = new THREE.MeshStandardMaterial({
-  color: "green",
-  roughness: 0,
-  envMapIntensity: 0.2,
-  // emissive: "#370037"
-})
-const yellowMaterial = new THREE.MeshStandardMaterial({
   color: "white",
   roughness: 0,
   envMapIntensity: 0.2,
   // emissive: "#370037"
 })
+// const yellowMaterial = new THREE.MeshStandardMaterial({
+//   color: "white",
+//   roughness: 0,
+//   envMapIntensity: 0.2,
+//   // emissive: "#370037"
+// })
 
 function App() {
   return (
@@ -38,9 +39,8 @@ function App() {
         <directionalLight intensity={1} position={[-10, -10, -10]} color="white" />
         <Physics gravity={[0, 2, 0]} iterations={10}>
           <Pointer />
-          <Clump geometry={sphereGeometry} material={redMaterial} count={15} texture={0}/>
-          <Clump geometry={sphereGeometry} material={greenMaterial} count={15} texture={1}/>
-          <Clump geometry={sphereGeometry} material={yellowMaterial} count={15} texture={2}/>
+          <Clump geometry={sphereGeometry} material={redMaterial} count={30} texture={0}/>
+          <Clump geometry={sphereGeometry} material={greenMaterial} count={30} texture={1}/>
         </Physics>
         <Environment preset={'warehouse'} />
       </Canvas>
