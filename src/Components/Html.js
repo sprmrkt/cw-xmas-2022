@@ -13,9 +13,11 @@ const Holder = styled.div`
   p {
     text-transform: uppercase;
     font-weight: 800;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1.1;
-    font-family: 'Karla', sans-serif;
+    @media( min-width: 768px ) {
+      font-size: 20px;
+    }
   }
 
   a {
@@ -56,7 +58,7 @@ function Html() {
   return (
     <Holder>
       <Text top left>2022 STIRRED <br />UP A LOT OF <br />IDEAS, NEW <br />DIRECTIONS AND <br />UNEXPECTED <br />CONNECTIONS</Text>
-      <Text bottom left>FROM EVERYONE AT <br />CW & Supermarket, <br />THANK YOU FOR <br />BEING THERE <br />WITH US.
+      <Text bottom left>FROM EVERYONE AT <br />CRAIG WALKER <br/>& Supermarket, <br />THANK YOU FOR <br />BEING THERE <br />WITH US.
         WE <br />LOOK FORWARD <br />TO SHAKING <br />THINGS UP IN 2023.</Text>
       <Logo top right>
         <a href="https://craigwalker.com.au" target="_blank" rel="noopener noreferrer"><CwLogo /></a>

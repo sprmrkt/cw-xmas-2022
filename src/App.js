@@ -13,6 +13,7 @@ import {useWindowSize} from "react-use";
 
 const sphereGeometry = new THREE.SphereGeometry(1, 32, 32)
 const Holder = styled.div`
+  font-family: 'Karla', sans-serif;
   .button,
   button {
     display: inline-block;
@@ -20,7 +21,6 @@ const Holder = styled.div`
     padding: 0 10px;
 
     font-family:inherit;
-    font-size: 20px;
     font-weight: 800;
     line-height: 2;
     text-decoration: none;
@@ -28,6 +28,10 @@ const Holder = styled.div`
     border: 2px solid;
     border-radius: 2px;
     text-transform: uppercase;
+    font-size: 16px;
+    @media( min-width: 768px ) {
+      font-size: 20px;
+    }
 
     color: inherit;
     background-color: transparent;
