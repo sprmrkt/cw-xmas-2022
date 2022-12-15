@@ -37,9 +37,10 @@ const Logos = styled.div`
   top: 20px;
   right: 20px;
   display: flex;
+  z-index: 100;
   a {
     display: block;
-    padding: 7px;
+    padding: 10px;
     svg {
       height: 50px;
       width: auto;
@@ -54,6 +55,7 @@ const Logos = styled.div`
 `;
 
 function Html() {
+  const orientation = useDeviceOrientation()
   return (
     <Holder>
       <Text top left>2022 STIRRED <br/>UP A LOT OF <br/>IDEAS, NEW <br/>DIRECTIONS AND <br/>UNEXPECTED <br/>CONNECTIONS</Text>
@@ -66,6 +68,7 @@ function Html() {
           <SupermarketLogo />
         </a>
       </Logos>
+      <Text bottom right>{orientation && orientation.gamma}, {orientation && orientation.beta}</Text>
     </Holder>
   )
 }

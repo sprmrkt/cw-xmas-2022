@@ -13,6 +13,7 @@ export default function useDeviceOrientation() {
     () => {
       const listener = (event) => {
         setOrientation(event);
+        console.log(event)
       };
       document.addEventListener("deviceorientation", listener);
 
