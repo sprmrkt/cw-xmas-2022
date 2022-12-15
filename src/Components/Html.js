@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import {ReactComponent as CwLogo} from '../assets/cw-logo.svg'
 import {ReactComponent as SupermarketLogo} from '../assets/supermarket-logo.svg'
-import useDeviceOrientation from "../hooks/useDeviceOrientation";
 
 const Holder = styled.div`
   position: absolute;
@@ -20,6 +19,13 @@ const Holder = styled.div`
   }
   a {
     color: inherit;
+  }
+  .orientationRequestButton {
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
   }
 `;
 
@@ -54,8 +60,7 @@ const Logos = styled.div`
   }
 `;
 
-function Html() {
-  const orientation = useDeviceOrientation()
+function Html(props) {
   return (
     <Holder>
       <Text top left>2022 STIRRED <br/>UP A LOT OF <br/>IDEAS, NEW <br/>DIRECTIONS AND <br/>UNEXPECTED <br/>CONNECTIONS</Text>
@@ -68,7 +73,7 @@ function Html() {
           <SupermarketLogo />
         </a>
       </Logos>
-      <Text bottom right>{orientation && orientation.gamma}, {orientation && orientation.beta}</Text>
+      {props.orientation && <Text bottom right>{props.orientation.gamma}, {props.orientation.beta}</Text>}
     </Holder>
   )
 }
