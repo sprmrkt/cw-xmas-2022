@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Holder = styled.div`
   width: 100%;
-  height: 100vh;
+  height: var(--windowHeight);
   overflow: hidden;
 `;
 

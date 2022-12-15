@@ -9,6 +9,7 @@ import * as THREE from "three";
 import useDeviceOrientation from "./hooks/useDeviceOrientation";
 import styled from "styled-components";
 import {useEffect, useState} from "react";
+import {useWindowSize} from "react-use";
 
 const sphereGeometry = new THREE.SphereGeometry(1, 32, 32)
 const Holder = styled.div`
@@ -24,7 +25,7 @@ const Holder = styled.div`
     line-height: 2;
     text-decoration: none;
     white-space: nowrap;
-    border: 3px solid;
+    border: 2px solid;
     border-radius: 2px;
     text-transform: uppercase;
 
@@ -42,6 +43,11 @@ function App() {
   const [Overlay, orientation] = useDeviceOrientation()
   const [gravityX, setGravityX] = useState( 0 );
   const [gravityY, setGravityY] = useState( 2 );
+  const size = useWindowSize();
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--windowHeight', `${size.height}px`);
+  }, [size]);
 
   useEffect(() => {
     if(orientation) {
@@ -66,12 +72,12 @@ function App() {
     <Holder>
       <Overlay />
       <CanvasHolder>
-        <Html orientation={orientation}/>
+        <Html/>
         <Canvas shadows dpr={[1, 2]} camera={{position: [0, 0, 20], fov: 35, near: 1, far: 40}}>
           <ambientLight intensity={0.25} />
-          <spotLight intensity={1} angle={0.2} penumbra={1} position={[30, 30, 30]} castShadow
+          <spotLight intensity={0.5} angle={0.2} penumbra={1} position={[30, 30, 30]} castShadow
                      shadow-mapSize={[512, 512]} />
-          <directionalLight intensity={1} position={[-10, -10, -10]} color="white" />
+          <directionalLight intensity={0.5} position={[-10, -10, -10]} color="white" />
           <Physics gravity={[gravityX, gravityY, 0]} iterations={10}>
             <Pointer />
             <Clump geometry={sphereGeometry} material={0} count={30} />

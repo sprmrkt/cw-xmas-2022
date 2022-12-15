@@ -8,18 +8,6 @@ const rfs = THREE.MathUtils.randFloatSpread
 function Ball({vec = new THREE.Vector3()}) {
   const [ constrained, setConstrained ] = useState( true );
 
-  // const sound = useMemo(() => new Audio('/bell.m4a'), [])
-  //
-  // const playAudio = (collision) => {
-  //   // console.log(collision.contact.impactVelocity)
-  //   if (collision.contact.impactVelocity > 3) {
-  //     if(!sound.isPlaying){
-  //       sound.currentTime = 0
-  //       sound.play((sound.volume = 0.01 * collision.contact.impactVelocity))
-  //     }
-  //   }
-  // }
-
   const [ref, api] = useSphere(() => ({
     args: [1],
     mass: 1,

@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import styled from "styled-components";
 
 const Holder = styled.div`
@@ -12,17 +12,14 @@ const Holder = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media( min-width: 768px ) {
+    display: none;
+  }
 `;
 
 export default function useDeviceOrientation(buttonText) {
   const [orientation, setOrientation] = useState(null);
   const [requested, setRequested] = useState(false);
-  // useEffect(() => {
-  //   window.addEventListener('deviceorientation', (e) => {
-  //     let direction= [map(e.gamma,-90,90,-10,10).toFixed(2), map(e.beta,-90,90,10,-10).toFixed(2),0]
-  //     this.setState({gravity:direction});
-  //   }, true);
-  // }, []);
 
   const requestPermission = () => {
 
@@ -31,7 +28,7 @@ export default function useDeviceOrientation(buttonText) {
       console.log(event)
     };
 
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
       DeviceOrientationEvent.requestPermission()
         .then(response => {
           if (response === "granted") {
